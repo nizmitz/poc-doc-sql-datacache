@@ -1,5 +1,7 @@
 # poc-doc-sql-datacache
 
+This repository is used to host tf codes for poc the default behavior that wasn't captured in terraform documentation
+
 ## First test ( terraform plan, terraform apply)
 * cache-null-ent > no data_cache, this is expected because ent doesn't support it
 * cache-disabled-ent-plus > no data_cache, since we explicitly said to disable the datacache
