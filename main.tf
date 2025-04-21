@@ -31,7 +31,7 @@ resource "google_sql_database_instance" "cache_enabled_ent_plus" {
 }
 
 resource "google_sql_database_instance" "cache_enabled_ent_plus_sql_server" {
-  name             = "cache-enabled-ent-plus"
+  name             = "cache-enabled-ent-plus-sql-server"
   database_version = "SQLSERVER_2022_ENTERPRISE"
   region           = "asia-southeast2"
   deletion_protection = false
