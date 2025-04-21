@@ -24,8 +24,8 @@ resource "google_sql_database_instance" "cache_enabled_ent_plus" {
   }
 }
 
-resource "google_sql_database_instance" "cache_disabled_ent_plus" {
-  name             = "cache-disabled-ent-plus"
+resource "google_sql_database_instance" "cache_null_ent_plus" {
+  name             = "cache-null-ent-plus"
   database_version = "POSTGRES_17"
   region           = "asia-southeast2"
 
@@ -34,6 +34,21 @@ resource "google_sql_database_instance" "cache_disabled_ent_plus" {
     edition = "ENTERPRISE_PLUS"
   }
 }
+
+resource "google_sql_database_instance" "cache_disabled_ent_plus" {
+  name             = "cache-disabled-ent-plus"
+  database_version = "POSTGRES_17"
+  region           = "asia-southeast2"
+
+  settings {
+    tier    = "db-perf-optimized-N-2"
+    edition = "ENTERPRISE_PLUS"
+    data_cache_config {
+      data_cache_enabled = false
+    }
+  }
+}
+
 
 resource "google_sql_database_instance" "cache_disabled_ent" {
   name             = "cache-disabled-ent"
@@ -51,6 +66,14 @@ output "cache_enabled_ent_plus" {
     edition           = google_sql_database_instance.cache_enabled_ent_plus.settings.0.edition
     tier              = google_sql_database_instance.cache_enabled_ent_plus.settings.0.tier
     data_cache_config = google_sql_database_instance.cache_enabled_ent_plus.settings.0.data_cache_config
+  }
+}
+
+output "cache_null_ent_plus" {
+  value = {
+    edition           = google_sql_database_instance.cache_null_ent_plus.settings.0.edition
+    tier              = google_sql_database_instance.cache_null_ent_plus.settings.0.tier
+    data_cache_config = google_sql_database_instance.cache_null_ent_plus.settings.0.data_cache_config
   }
 }
 
